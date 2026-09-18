@@ -1,0 +1,33 @@
+---
+
+- name: full project
+  hosts: debian
+  become: true
+  tasks:
+    - name: check if git install or not
+      apt:
+        name: git
+        state: present
+        update_cache: true
+
+    - name: get project repo
+      git:
+        repo: https://github.com/gitcorse/full_project.git
+        dest: /tmp/reop
+        version: main
+      ignore_errors: true
+      
+    - name: create docker image from Dockerfile
+      docker_image:
+        name: full_project
+        build:
+          path: /tmp/reop
+        source: build
+      ignore_errors: true
+
+    - name: create container from full_project immage
+      docker_container:
+        name: nginx
+        image: full_project
+        ports:
+          - "8080:80"

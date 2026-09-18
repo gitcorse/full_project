@@ -2,7 +2,6 @@
 
 ## have simple nginx server that run html site
 
-------------------------------------------------------------
 
 # tasks in main.yml
 
@@ -11,7 +10,6 @@
 - built a docker image form Dockerfile located in repo
 - create a docker container from image
 
--------------------------------------------------------------
 # lanche project 
 
 ```bash
